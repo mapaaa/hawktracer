@@ -24,7 +24,7 @@ TEST(TestOrderedTreeEditingDistance, TestPostOrder)
     }
 }
 
-TEST(TestPatternMatching, TestLeftMostLeaves)
+TEST(TestOrderedTreeEditingDistance, TestLeftMostLeaves)
 {
     HawkTracer::anomaly::Graphs graphs;
     graphs.load_from_file(TestPath::get().get_input_file_path("test4_pattern.json"));
@@ -43,7 +43,7 @@ TEST(TestPatternMatching, TestLeftMostLeaves)
     }
 }
 
-TEST(TestPatternMatching, TestKeyRoots)
+TEST(TestOrderedTreeEditingDistance, TestKeyRoots)
 {
     HawkTracer::anomaly::Graphs graphs;
     graphs.load_from_file(TestPath::get().get_input_file_path("test4_pattern.json"));
