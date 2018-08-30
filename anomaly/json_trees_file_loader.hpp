@@ -1,6 +1,8 @@
 #ifndef HAWKTRACER_ANOMALY_JSON_TREES_FILE_LOADER_HPP
 #define HAWKTRACER_ANOMALY_JSON_TREES_FILE_LOADER_HPP
 
+#include "file_loader.hpp"
+
 #include <client/call_graph.hpp>
 #include <thirdparty/jsonxx/jsonxx.h>
 
@@ -13,11 +15,11 @@ namespace HawkTracer
 namespace anomaly
 {
 
-class JsonTreesFileLoader
+class JsonTreesFileLoader : public FileLoader
 {
 public:
-    bool init(const std::string& file_name);
-    std::vector<std::pair<std::shared_ptr<CallGraph::TreeNode>, int>> get_trees();
+    bool init(const std::string& file_name) override;
+    std::vector<std::pair<std::shared_ptr<CallGraph::TreeNode>, int>> get_trees() override;
 private:
     bool _parse_file();
     bool _parse_tree(const jsonxx::Value& tree);
