@@ -8,6 +8,7 @@
 #include <memory>
 
 using TreeNode = HawkTracer::client::CallGraph::TreeNode;
+using TreeNodeData = HawkTracer::client::CallGraph::TreeNodeData;
 using Mapping = std::vector<std::pair<unsigned int, unsigned int>>;
 
 namespace HawkTracer
@@ -34,6 +35,8 @@ public:
     Mapping get_mapping(); 
     static void compute_post_order(std::shared_ptr<TreeNode> node,
                                    std::vector<std::string>& post_order);
+    static void compute_post_order_data(std::shared_ptr<TreeNode> node,
+                                        std::vector<TreeNodeData>& post_order_data);
 
     static int compute_left_most_leaves(std::shared_ptr<TreeNode> node,
                                         int& index_last_node,

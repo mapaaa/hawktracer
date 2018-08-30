@@ -74,6 +74,18 @@ void OrderedTreeEditingDistance::compute_post_order(std::shared_ptr<TreeNode> no
     post_order.push_back(node->data.label);
 }
 
+
+void OrderedTreeEditingDistance::compute_post_order_data(std::shared_ptr<TreeNode> node,
+                                                         std::vector<TreeNodeData>& post_order_data)
+{
+    for (auto child = node->children.begin(); child != node->children.end(); ++child)
+    {
+        compute_post_order_data(child->first, post_order_data);
+    }
+
+    post_order_data.emplace_back(node->data, node->total_duration, node->total_children_duration);
+}
+
 int OrderedTreeEditingDistance::compute_left_most_leaves(std::shared_ptr<TreeNode> node,
                                                          int& index_last_node,
                                                          std::vector<unsigned int>& left_most_leaf)
