@@ -39,7 +39,7 @@ private:
     bool _consider_dur = true;
     bool _consider_children_prop = true;
     bool _consider_relative_start_time = true;
-    double _anomaly_score_threshold = 0.1;
+    double _anomaly_score_threshold = 0.3;
     unsigned int _max_insertions = 4;
     unsigned int _max_deletions = 4;
     unsigned int _max_relabel = 4;
