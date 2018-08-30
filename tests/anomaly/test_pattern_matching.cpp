@@ -1,3 +1,4 @@
+#include <anomaly/json_trees_file_loader.hpp>
 #include <anomaly/pattern_matching.hpp>
 #include <tests/client/test_path.hpp>
 #include <gtest/gtest.h>
@@ -7,14 +8,16 @@ void test_pattern_matching(std::string pattern_file_name,
                            std::string source_file_name,
                            std::vector<std::vector<int>> results)
 {
-    auto patterns = std::make_shared<HawkTracer::anomaly::Graphs>();
+    auto patterns = std::make_shared<HawkTracer::anomaly::Graphs>(
+            std::make_shared<HawkTracer::anomaly::JsonTreesFileLoader>());
     patterns->load_from_file(TestPath::get().get_input_file_path(pattern_file_name));
 
     auto config = std::make_shared<HawkTracer::anomaly::Config>();
     config->load_from_file(TestPath::get().get_input_file_path(config_file_name));
 
     HawkTracer::anomaly::PatternMatching pattern_matcher(config, patterns);
-    auto source = std::make_shared<HawkTracer::anomaly::Graphs>();
+    auto source = std::make_shared<HawkTracer::anomaly::Graphs>(
+            std::make_shared<HawkTracer::anomaly::JsonTreesFileLoader>());
     source->load_from_file(TestPath::get().get_input_file_path(source_file_name));
     
     const auto& sources = source->get_trees();

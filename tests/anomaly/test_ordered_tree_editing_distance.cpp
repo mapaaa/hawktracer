@@ -1,4 +1,5 @@
 #include <anomaly/graphs.hpp>
+#include <anomaly/json_trees_file_loader.hpp>
 #include <anomaly/ordered_tree_editing_distance.hpp>
 #include <tests/client/test_path.hpp>
 
@@ -8,7 +9,7 @@ using HawkTracer::anomaly::OrderedTreeEditingDistance;
 
 TEST(TestOrderedTreeEditingDistance, TestPostOrder)
 {
-    HawkTracer::anomaly::Graphs graphs;
+    HawkTracer::anomaly::Graphs graphs(std::make_shared<HawkTracer::anomaly::JsonTreesFileLoader>());
     graphs.load_from_file(TestPath::get().get_input_file_path("test4_pattern.json"));
     const auto &trees = graphs.get_trees();
     ASSERT_TRUE(trees.size() == 1);
@@ -26,7 +27,7 @@ TEST(TestOrderedTreeEditingDistance, TestPostOrder)
 
 TEST(TestOrderedTreeEditingDistance, TestLeftMostLeaves)
 {
-    HawkTracer::anomaly::Graphs graphs;
+    HawkTracer::anomaly::Graphs graphs(std::make_shared<HawkTracer::anomaly::JsonTreesFileLoader>());
     graphs.load_from_file(TestPath::get().get_input_file_path("test4_pattern.json"));
     const auto &trees = graphs.get_trees();
     ASSERT_TRUE(trees.size() == 1);
@@ -45,7 +46,7 @@ TEST(TestOrderedTreeEditingDistance, TestLeftMostLeaves)
 
 TEST(TestOrderedTreeEditingDistance, TestKeyRoots)
 {
-    HawkTracer::anomaly::Graphs graphs;
+    HawkTracer::anomaly::Graphs graphs(std::make_shared<HawkTracer::anomaly::JsonTreesFileLoader>());
     graphs.load_from_file(TestPath::get().get_input_file_path("test4_pattern.json"));
     const auto &trees = graphs.get_trees();
     ASSERT_TRUE(trees.size() == 1);
