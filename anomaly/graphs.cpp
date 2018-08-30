@@ -5,14 +5,19 @@ namespace HawkTracer
 namespace anomaly
 {
 
+Graphs::Graphs(std::shared_ptr<FileLoader> file_loader) : 
+    _file_loader(std::move(file_loader))
+{
+}
+
 bool Graphs::load_from_file(const std::string& file_name)
 {
-    if (!_file_loader.init(file_name))
+    if (!_file_loader->init(file_name))
     {
         return false;
     }
     
-    _trees = _file_loader.get_trees();
+    _trees = _file_loader->get_trees();
     return true;
 }
 
