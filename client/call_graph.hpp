@@ -34,6 +34,19 @@ public:
             return stop_ts - start_ts;
         }
     };
+    
+    struct TreeNodeData
+    {
+        NodeData data;
+        HT_DurationNs total_duration;
+        HT_DurationNs total_children_duration;
+        TreeNodeData(NodeData d, HT_DurationNs td, HT_DurationNs tcd)
+        {
+            data = d;
+            total_duration = td;
+            total_children_duration = tcd;
+        }
+    };
 
     struct TreeNode
     {
@@ -43,6 +56,10 @@ public:
 
         std::vector<std::pair<std::shared_ptr<TreeNode>, int>> children;
         std::weak_ptr<TreeNode> parent;
+
+        TreeNode()
+        {
+        }
 
         TreeNode(NodeData node_data)
         {
