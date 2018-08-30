@@ -1,6 +1,8 @@
 add_library(hawktracer_anomaly
     STATIC
+    anomalies.cpp
     config.cpp
+    chrome_file_loader.cpp
     graphs.cpp
     json_trees_file_loader.cpp
     ordered_tree_editing_distance.cpp
@@ -10,7 +12,7 @@ target_include_directories(hawktracer_anomaly PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 
 add_executable(hawktracer-anomaly main.cpp)
 
-target_link_libraries(hawktracer_anomaly hawktracer_parser jsonxx)
+target_link_libraries(hawktracer_anomaly hawktracer_parser hawktracer_client jsonxx)
 target_link_libraries(hawktracer-anomaly hawktracer_anomaly)
 
 install(TARGETS hawktracer-anomaly
